@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { ComponentWrapper } from "../config/frontend";
-import { SuperTokensProvider } from "../components/supertokensProvider";
+import { SuperTokensProvider } from "../components/supertokens/supertokensProvider";
+import { TrpcTanstackProvider } from "../components/trpc/trpcTanstack.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,47 +23,49 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${inter.className} app-wrapper`}>
                 <SuperTokensProvider>
-                    <div className="App app-container">
-                        <header>
-                            <nav className="header-container">
-                                <Link href="/">🏠</Link>
-                                <ul className="header-container-right">
-                                    <li>
-                                        <a
-                                            href="https://trpc.io/docs"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            tRPC Docs
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="https://supertokens.com/docs//"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            SuperTokens Docs
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="https://github.com/supertokens/create-supertokens-app"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            SuperTokens CLI Repo
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </header>
-                        <div className="fill" id="home-container">
-                            <ComponentWrapper>
-                                <>{children}</>
-                            </ComponentWrapper>
+                    <TrpcTanstackProvider>
+                        <div className="App app-container">
+                            <header>
+                                <nav className="header-container">
+                                    <Link href="/">🏠</Link>
+                                    <ul className="header-container-right">
+                                        <li>
+                                            <a
+                                                href="https://trpc.io/docs"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                tRPC Docs
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://supertokens.com/docs//"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                SuperTokens Docs
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://github.com/supertokens/create-supertokens-app"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                SuperTokens CLI Repo
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </header>
+                            <div className="fill" id="home-container">
+                                <ComponentWrapper>
+                                    <>{children}</>
+                                </ComponentWrapper>
+                            </div>
                         </div>
-                    </div>
+                    </TrpcTanstackProvider>
                 </SuperTokensProvider>
             </body>
         </html>
