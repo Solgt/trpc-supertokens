@@ -1,10 +1,9 @@
 import { cookies } from "next/headers";
 import { TryRefreshComponent } from "./tryRefreshClientComponent";
 import { redirect } from "next/navigation";
-import Image from "next/image";
-import { SessionAuthForNextJS } from "../sessionAuthForNextJS";
-import DashboardButtons from "../dashboardButtons";
 import { getSessionForSSR } from "../../app/util";
+import { SessionAuthForNextJS } from "./sessionAuthForNextJS";
+import DashboardButtons from "./dashboardButtons";
 
 export async function DashboardPage() {
     const cookiesFromReq = await cookies();
