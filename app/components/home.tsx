@@ -16,16 +16,28 @@ export function HomePage() {
                 <img src="/ST.svg" alt="SuperTokens" />
                 <span>x</span>
                 <img src="/next.svg" alt="Next" />
+                <span>x</span>
+                <img src="/trpc_logo.svg" alt="Next" />
             </section>
             <section className="main-container">
                 <div className="inner-content">
                     <h1>
-                        <strong>SuperTokens</strong> x <strong>Next.js</strong> <br /> example project
+                        <strong>SuperTokens</strong> x <strong>Next.js</strong>{" "}
+                        x <strong>tRPC</strong> <br /> example project <br />
                     </h1>
+                    <h3>
+                        bootstrapped with <br />
+                        <code
+                            style={{ backgroundColor: "lightgray", padding: 1 }}
+                        >
+                            npx create-supertokens-app@latest
+                        </code>
+                    </h3>
                     <div>
                         {session.doesSessionExist ? (
                             <p>
-                                You're signed in already, <br /> check out the Dashboard! 👇
+                                You&apos;re signed in already, <br /> check out
+                                the Dashboard! 👇
                             </p>
                         ) : (
                             <p>Sign-in to continue</p>
@@ -33,7 +45,10 @@ export function HomePage() {
                     </div>
                     <nav className="buttons">
                         {session.doesSessionExist ? (
-                            <Link href="/dashboard" className="dashboard-button">
+                            <Link
+                                href="/dashboard"
+                                className="dashboard-button"
+                            >
                                 Dashboard
                             </Link>
                         ) : (

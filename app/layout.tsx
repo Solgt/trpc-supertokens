@@ -2,19 +2,21 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { SuperTokensProvider } from "./components/supertokensProvider";
-import { SeparatorLine } from "../assets/images";
 import Link from "next/link";
-import Image from "next/image";
 import { ComponentWrapper } from "./config/frontend";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "SuperTokens + Nextjs",
-    description: "SuperTokens demo app",
+    title: "SuperTokens + tRPC + Nextjs",
+    description: "SuperTokens + tRPC demo app",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     "use client";
     return (
         <html lang="en">
@@ -23,17 +25,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="App app-container">
                         <header>
                             <nav className="header-container">
-                                <Link href="/">
-                                    <img src="/ST.svg" alt="SuperTokens" />
-                                </Link>
+                                <Link href="/">🏠</Link>
                                 <ul className="header-container-right">
+                                    <li>
+                                        <a
+                                            href="https://trpc.io/docs"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            tRPC Docs
+                                        </a>
+                                    </li>
                                     <li>
                                         <a
                                             href="https://supertokens.com/docs//"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            Docs
+                                            SuperTokens Docs
                                         </a>
                                     </li>
                                     <li>
@@ -42,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            CLI Repo
+                                            SuperTokens CLI Repo
                                         </a>
                                     </li>
                                 </ul>
@@ -50,17 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </header>
                         <div className="fill" id="home-container">
                             <ComponentWrapper>
-                                <>
-                                    {children}
-                                    <footer>
-                                        Built with ❤️ by the folks at{" "}
-                                        <a href="https://supertokens.io" target="_blank" rel="noopener noreferrer">
-                                            supertokens.com
-                                        </a>
-                                        .
-                                    </footer>
-                                    <Image className="separator-line" src={SeparatorLine} alt="separator" />
-                                </>
+                                <>{children}</>
                             </ComponentWrapper>
                         </div>
                     </div>

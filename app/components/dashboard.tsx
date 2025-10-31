@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { TryRefreshComponent } from "./tryRefreshClientComponent";
 import { redirect } from "next/navigation";
-import { CelebrateIcon } from "../../assets/images";
 import Image from "next/image";
 import { SessionAuthForNextJS } from "./sessionAuthForNextJS";
 import { getSessionForSSR } from "../util";
@@ -9,16 +8,23 @@ import DashboardButtons from "./dashboardButtons";
 
 export async function DashboardPage() {
     const cookiesFromReq = await cookies();
-    const cookiesArray: Array<{ name: string; value: string }> = Array.from(cookiesFromReq.getAll()).map(
-        ({ name, value }) => ({
-            name,
-            value,
-        })
+    const cookiesArray: Array<{ name: string; value: string }> = Array.from(
+        cookiesFromReq.getAll()
+    ).map(({ name, value }) => ({
+        name,
+        value,
+    }));
+    const { accessTokenPayload, hasToken, error } = await getSessionForSSR(
+        cookiesArray
     );
-    const { accessTokenPayload, hasToken, error } = await getSessionForSSR(cookiesArray);
 
     if (error) {
-        return <div>Something went wrong while trying to get the session. Error - {error.message}</div>;
+        return (
+            <div>
+                Something went wrong while trying to get the session. Error -{" "}
+                {error.message}
+            </div>
+        );
     }
 
     // `accessTokenPayload` will be undefined if it the session does not exist or has expired
@@ -47,9 +53,6 @@ export async function DashboardPage() {
     return (
         <SessionAuthForNextJS>
             <div className="main-container">
-                <div className="top-band success-title bold-500">
-                    <Image src={CelebrateIcon} alt="Login successful" className="success-icon" /> Login successful
-                </div>
                 <div className="inner-content">
                     <div>Your userID is:</div>
                     <div className="truncate" id="user-id">

@@ -6,7 +6,9 @@ import { ensureSuperTokensInit } from "./app/config/backendConfigUtils";
 
 ensureSuperTokensInit();
 
-export async function middleware(request: NextRequest & { session?: SessionContainer }) {
+export async function proxy(
+    request: NextRequest & { session?: SessionContainer }
+) {
     if (request.headers.has("x-user-id")) {
         console.warn(
             "The FE tried to pass x-user-id, which is only supposed to be a backend internal header. Ignoring."
@@ -14,7 +16,10 @@ export async function middleware(request: NextRequest & { session?: SessionConta
         request.headers.delete("x-user-id");
     }
 
-    if (request.nextUrl.pathname.startsWith("/api/auth") || request.nextUrl.pathname.startsWith("/api/tenants")) {
+    if (
+        request.nextUrl.pathname.startsWith("/api/auth") ||
+        request.nextUrl.pathname.startsWith("/api/tenants")
+    ) {
         // this hits our pages/api/auth/* endpoints
         return NextResponse.next();
     }
