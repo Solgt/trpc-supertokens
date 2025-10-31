@@ -3,8 +3,8 @@ import { TryRefreshComponent } from "./tryRefreshClientComponent";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import { SessionAuthForNextJS } from "./sessionAuthForNextJS";
-import { getSessionForSSR } from "../util";
 import DashboardButtons from "./dashboardButtons";
+import { getSessionForSSR } from "../app/util";
 
 export async function DashboardPage() {
     const cookiesFromReq = await cookies();

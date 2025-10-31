@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { SuperTokensProvider } from "./components/supertokensProvider";
 import Link from "next/link";
-import { ComponentWrapper } from "./config/frontend";
+import { ComponentWrapper } from "../config/frontend";
+import { SuperTokensProvider } from "../components/supertokensProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,7 +1,7 @@
 import JsonWebToken from "jsonwebtoken";
 import type { JwtHeader, JwtPayload, SigningKeyCallback } from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
-import { backendConfig } from "./config/backendConfigUtils";
+import { backendConfig } from "../config/backendConfigUtils";
 
 const appInfo = backendConfig().appInfo;
 
@@ -39,12 +39,16 @@ async function verifyToken(token: string): Promise<JwtPayload> {
  * because getSession can update the access token. These updated tokens would not be
  * propagated to the client side, as request interceptors do not run on the server side.
  */
-export async function getSessionForSSR(cookies: Array<{ name: string; value: string }>): Promise<{
+export async function getSessionForSSR(
+    cookies: Array<{ name: string; value: string }>
+): Promise<{
     accessTokenPayload: JwtPayload | undefined;
     hasToken: boolean;
     error: Error | undefined;
 }> {
-    let accessToken = cookies.find((cookie) => cookie.name === "sAccessToken")?.value;
+    let accessToken = cookies.find(
+        (cookie) => cookie.name === "sAccessToken"
+    )?.value;
     const hasToken = !!accessToken;
     try {
         if (accessToken) {
@@ -54,8 +58,16 @@ export async function getSessionForSSR(cookies: Array<{ name: string; value: str
         return { accessTokenPayload: undefined, hasToken, error: undefined };
     } catch (error) {
         if (error instanceof JsonWebToken.TokenExpiredError) {
-            return { accessTokenPayload: undefined, hasToken, error: undefined };
+            return {
+                accessTokenPayload: undefined,
+                hasToken,
+                error: undefined,
+            };
         }
-        return { accessTokenPayload: undefined, hasToken, error: error as Error };
+        return {
+            accessTokenPayload: undefined,
+            hasToken,
+            error: error as Error,
+        };
     }
 }
