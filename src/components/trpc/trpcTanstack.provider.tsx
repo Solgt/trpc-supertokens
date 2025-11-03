@@ -74,6 +74,7 @@ function getQueryClient(notify?: NotifyLike) {
         // This is very important, so we don't re-make a new client if React
         // suspends during the initial render. This may not be needed if we
         // have a suspense boundary BELOW the creation of the query client
+        // Thanks to T3 stack for this
         if (!browserQueryClient) browserQueryClient = makeQueryClient(notify);
         return browserQueryClient;
     }

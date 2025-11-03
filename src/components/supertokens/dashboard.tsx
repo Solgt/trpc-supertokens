@@ -3,7 +3,7 @@ import { TryRefreshComponent } from "./tryRefreshClientComponent";
 import { redirect } from "next/navigation";
 import { getSessionForSSR } from "../../app/util";
 import { SessionAuthForNextJS } from "./sessionAuthForNextJS";
-import DashboardButtons from "./dashboardButtons";
+import DashboardClient from "./dashboardClient";
 
 export async function DashboardPage() {
     const cookiesFromReq = await cookies();
@@ -57,7 +57,7 @@ export async function DashboardPage() {
                     <div className="truncate" id="user-id">
                         {accessTokenPayload.sub}
                     </div>
-                    <DashboardButtons />
+                    <DashboardClient />
                 </div>
             </div>
         </SessionAuthForNextJS>

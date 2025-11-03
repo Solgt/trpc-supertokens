@@ -27,7 +27,7 @@ export default function RootLayout({
                         <div className="App app-container">
                             <header>
                                 <nav className="header-container">
-                                    <Link href="/">🏠</Link>
+                                    <Link href="/">🏠 Home</Link>
                                     <ul className="header-container-right">
                                         <li>
                                             <a
