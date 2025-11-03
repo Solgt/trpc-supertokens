@@ -4,7 +4,7 @@ A demo implementation of [SuperTokens](https://supertokens.com/) with [Next.js](
 
 ## General Info
 
-This project aims to demonstrate how to integrate SuperTokens into a Nexjs application with tRPC and ensure that Supertoken's session refreshing mechanisms remain intact. Its primary purpose is to serve as an educational tool.
+This project aims to demonstrate how to integrate SuperTokens into a Nexjs application with tRPC and ensure that Supertoken's session refreshing mechanisms remain intact with the API flow. Its primary purpose is to serve as an educational tool.
 
 This project was bootstrapped with `npx create-supertokens-app@latest` but amended to use the `src` directory.
 
