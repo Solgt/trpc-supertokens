@@ -14,13 +14,6 @@ import { ensureSuperTokensInit } from "@/src/config/backendConfigUtils";
 ensureSuperTokensInit();
 
 /**
- * Add artificial delay for processing responses to simulate real conditions.
- *
- * @note Always disabled in production.
- */
-const USE_TIMED_DELAY = false;
-
-/**
  * 1. CONTEXT
  *
  * This section defines the "contexts" that are available in the backend API.
@@ -92,41 +85,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  */
 export const createTRPCRouter = t.router;
 
-/**
- * Middleware for timing procedure execution and adding an articifial delay in development.
- *
- * You can remove this if you don't like it, but it can help catch unwanted waterfalls by simulating
- * network latency that would occur in production but not in local development.
- */
-const timingMiddleware = t.middleware(async ({ next, path }) => {
-    const start = Date.now();
-    const waitMs = Math.floor(Math.random() * 400) + 100;
-
-    if (t._config.isDev) {
-        // artificial delay in dev 100-500ms
-        await new Promise((resolve) => setTimeout(resolve, waitMs));
-    }
-
-    const result = await next();
-
-    const end = Date.now();
-
-    if (t._config.isDev) {
-        console.info(
-            `[TRPC] ${path} took ${
-                end - start
-            }ms to execute. Artificial ${waitMs}ms. Real ${
-                end - start - waitMs
-            }ms`
-        );
-    }
-
-    return result;
-});
-
-const baseProcedure = USE_TIMED_DELAY
-    ? t.procedure.use(timingMiddleware)
-    : t.procedure;
+const baseProcedure = t.procedure;
 
 /**
  * Public (unauthed) procedure
