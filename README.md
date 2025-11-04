@@ -2,6 +2,8 @@
 
 A demo implementation of [SuperTokens](https://supertokens.com/) with [Next.js](https://nextjs.org/) and [tRPC](https://trpc.io/).
 
+📜 [See the blog post for a step-by-step walkthrough](https://solgt.no/blog/trpc-supertokens)
+
 ## General Info
 
 This project aims to demonstrate how to integrate SuperTokens into a Nexjs application with tRPC and ensure that Supertoken's session refreshing mechanisms remain intact with the API flow. Its primary purpose is to serve as an educational tool.
