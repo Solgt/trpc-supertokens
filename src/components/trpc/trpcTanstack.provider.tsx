@@ -111,7 +111,10 @@ export function TrpcTanstackProvider({
 
                             // Check if response contains auth errors
                             if (!response.ok) {
-                                const errorData = await response.clone().json();
+                                const errorData = await response
+                                    .clone()
+                                    .json()
+                                    .catch(() => undefined);
 
                                 if (
                                     errorData?.error?.data?.cause?.type ===
