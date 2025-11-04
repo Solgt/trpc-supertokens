@@ -2,7 +2,7 @@
 
 A demo implementation of [SuperTokens](https://supertokens.com/) with [Next.js](https://nextjs.org/) and [tRPC](https://trpc.io/).
 
-📜 [See the blog post for a step-by-step walkthrough](https://solgt.no/blog/trpc-supertokens)
+📜 [See the blog post for a step-by-step walkthrough](https://solgt.no/blog/trpc-supertokens) (_Also available in the repo_)
 
 ## General Info
 
